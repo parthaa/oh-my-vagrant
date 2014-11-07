@@ -33,6 +33,20 @@ Happy hacking!\n",
 	}
 
 	# XXX: write your code here...
+  $user = "dwightshrute"
+  user { $user:
+  ensure     => "present",
+  home => "/home/${user}"
+  }
+
+  file {'/home/dwightshrute/joke':
+    content => '
+    Before I do anything I ask myself  “Would an idiot do that?” And if the answer is yes, I do not do that thing.
+    ',
+    require => User[$user],
+    owner => $user,
+    group => $user
+  }
 
 }
 
